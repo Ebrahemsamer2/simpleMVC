@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Password Forgot{% endblock %}
+
+{% block body %}
+    {% if user.errors is not empty %}
+    <h3>Error: </h3>
+    <ul class='errors'>
+        {% for error in user.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+
+    <form id="forgotPassowrdForm" method="POST" action="/password/request-reset">
+
+        <div class='form-group'>
+            <label for='email'>Email</label>
+            <input class='form-control' required id='email' type="email" name="email">
+        </div>
+
+        <input class='btn btn-info' type="submit" name="signup" value='Reset Password'>
+        
+    </form>
+
+
+{% endblock %}
+
+
+{% block footer %}
+
+
+
+{% endblock %}
+
+

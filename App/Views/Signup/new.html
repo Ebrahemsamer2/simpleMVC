@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <h1>Sign up</h1>
+
+    {% if user.errors is not empty %}
+    <h3>Error: </h3>
+    <ul class='errors'>
+        {% for error in user.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+
+    <form id="signupForm" method="POST" action="/signup/create">
+
+        <div class='form-group'>
+            <label for='username'>Username</label>
+            <input class='form-control' required id='username' type="text" name="username" value="{{ user.username }}">
+        </div>
+
+        <div class='form-group'>
+            <label for='email'>Email</label>
+            <input class='form-control' required id='email' type="email" name="email" value="{{ user.email }}">
+        </div>
+
+        <div class='form-group'>
+            <label for='password'>Password</label>
+            <input class='form-control' required id='password' type="password" name="password">
+        </div>
+
+        <input class='btn btn-success' type="submit" name="signup" value='Sign up'>
+    </form>
+
+
+{% endblock %}
+
+
+{% block footer %}
+<script src="/js/hideShowPassword.min.js"></script>
+<script>
+
+    $(function(){
+
+        $("#password").hideShowPassword({
+            show: false,
+            innerToggle: 'focus'
+        })
+
+        // client side validation  here 
+
+    })
+
+</script>
+
+
+{% endblock %}
+
+

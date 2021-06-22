@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <h1>Login</h1>
+
+    {% if user.errors is not empty %}
+    <h3>Error: </h3>
+    <ul class='errors'>
+        {% for error in user.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+
+    <form id="loginForm" method="POST" action="/login/create">
+
+        <div class="form-group">
+            <label for='email'>Email</label>
+            <input required class='form-control' id='email' type="email" name="email" value="{{ email }}">
+        </div>
+
+        <div class="form-group">
+            <label for='password'>Password</label>
+            <input required class='form-control' id='password' type="password" name="password">
+        </div>
+        <a href="/password/forgot" class=""> Forgot my password</a>
+        <input class='btn btn-success' type="submit" name="login" value='Login'>
+        
+    </form>
+
+
+{% endblock %}
+
+
+{% block footer %}
+
+<script src="/js/hideShowPassword.min.js"></script>
+<script>
+
+    $(function(){
+
+
+        // client side validation  here 
+
+    })
+
+</script>
+
+
+{% endblock %}
+
+

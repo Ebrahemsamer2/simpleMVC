@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <h1>Password reset</h1>
+
+    {% if user.errors is not empty %}
+    <h3>Error: </h3>
+    <ul class='errors'>
+        {% for error in user.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+
+    <form id="signupForm" method="POST" action="/password/reset-password">
+
+        <input value='{{ token }}' name='token' type='hidden'>
+
+        <div class='form-group'>
+            <label for='password'>Password</label>
+            <input class='form-control' required id='password' type="password" name="password">
+        </div>
+
+        <input class='btn btn-info' type="submit" name="reset_password" value='Reset Password'>
+
+    </form>
+
+
+{% endblock %}
+
+
+{% block footer %}
+<script src="/js/hideShowPassword.min.js"></script>
+<script>
+    $(function(){
+        $("#password").hideShowPassword({
+            show: false,
+            innerToggle: 'focus'
+        })
+    })
+</script>
+{% endblock %}
+
+
